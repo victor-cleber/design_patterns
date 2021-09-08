@@ -12,6 +12,22 @@ OR
 
 ```dotnet new webapi -o Company.Fleet.API```
 
+=> Add new projects
+
+create a new library project inside projects folder
+
+```dotnet new classlib -o Company.Fleet.Infra```
+
+```dotnet new classlib -o Company.Fleet.Domain```
+
+add project reference
+
+```dotnet add Company.Fleet.API/Company.Fleet.API.csproj reference Company.Fleet.Infra/Company.Fleet.Infra.csproj```
+
+```dotnet add Company.Fleet.API/Company.Fleet.API.csproj reference Company.Fleet.Infra/Company.Fleet.Domain.csproj```
+
+```dotnet build```
+
 => Configurating Swagger
 
 ```dotnet add package Swashbuckle.AspNetCore```
@@ -53,3 +69,5 @@ app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fleet API v
 - https://localhost:5001/swagger/v1/swagger.json
 
 - https://localhost:5001/swagger/index.html
+
+
