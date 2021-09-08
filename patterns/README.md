@@ -1,9 +1,4 @@
-
-=> Singleton
-
-
-
-![Singleton UML diagram](assets/image.png)
+![Singleton UML diagram](https://github.com/victor-cleber/design_patterns/blob/main/patterns/assets/singleton.png)
 
 
 GET
