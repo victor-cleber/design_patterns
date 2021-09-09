@@ -14,7 +14,7 @@ OR
 
 => Add new projects
 
-create a new library project inside projects folder
+create a new library project inside the projects folder
 
 ```dotnet new classlib -o Company.Fleet.Infra```
 
@@ -24,7 +24,7 @@ add project reference
 
 ```dotnet add Company.Fleet.API/Company.Fleet.API.csproj reference Company.Fleet.Infra/Company.Fleet.Infra.csproj```
 
-```dotnet add Company.Fleet.API/Company.Fleet.API.csproj reference Company.Fleet.Infra/Company.Fleet.Domain.csproj```
+```dotnet add Company.Fleet.API/Company.Fleet.API.csproj reference Company.Fleet.Domain/Company.Fleet.Domain.csproj```
 
 ```dotnet build```
 
@@ -64,10 +64,18 @@ app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fleet API v
 ```dotnet watch run```
 
 
-=> Open the following address in your browswer
+=> Open the following address in your browser
 
 - https://localhost:5001/swagger/v1/swagger.json
 
 - https://localhost:5001/swagger/index.html
 
 
+
+
+###Repository Pattern
+The repository defines what methods are expected from any repository that derives from this interface.
+
+This ease is because of the uncoupling of code between the domain and the data provider using a contract. The contract (interface) defines the necessary methods for the manipulation of the data. 
+
+Another advantage of using the repository pattern is that it makes it easy to work with unit tests. For running unit tests, we can include a fake repository and perform the tests.
