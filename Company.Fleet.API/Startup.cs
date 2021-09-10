@@ -13,7 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System.IO;
 
+using Company.Fleet.Domain;
 using Company.Fleet.Infra.Singleton;
+using Company.Fleet.Infra.Repository;
 
 namespace Company.Fleet.API
 {
@@ -44,6 +46,8 @@ namespace Company.Fleet.API
             });
 
             services.AddSingleton<SingletonContainer>();
+
+            services.AddSingleton<IVehicleRepository, InMemoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
