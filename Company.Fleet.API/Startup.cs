@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ using Company.Fleet.Domain;
 using Company.Fleet.Infra.Singleton;
 using Company.Fleet.Infra.Repository;
 using Company.Fleet.Infra.Repository.EF;
+using Company.Fleet.Infra.Facade;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -54,6 +56,12 @@ namespace Company.Fleet.API
             services.AddTransient<IVehicleRepository, FleetRepository>();
 
             services.AddDbContext<FleetContext>(opt => opt.UseInMemoryDatabase("Fleet"));
+
+            services.Configure<DetranOptions>(Configuration.GetSection("DetranOptions"));
+
+            services.AddHttpClient();
+
+            services.AddTransient<IVehicleDetran, VehicleDetranFacade>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

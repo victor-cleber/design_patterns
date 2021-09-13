@@ -55,3 +55,52 @@ to
 ```services.AddTransient<IVehicleRepository, FleetRepository>();```
 
 ![Repository EF Methods](https://github.com/victor-cleber/design_patterns/blob/main/patterns/assets/repository_ef.png)
+
+
+###FACADE
+
+Insert a contract in Domain project:
+-> IVehicleDetran
+
+Create a folder Facade inside Infra Project
+
+-> DetranOptions and VehicleDetranFacade
+
+add configurations in AppSettings:
+
+```
+"DetranOptions":{
+    "BaseUrl": "https://xpto12345678.mockapi.io/",
+    "ScheduleUrl": "api/v1/detran/schedule",
+    "NumberOfDaysForScheduling": 1    
+ ```
+
+ Add DetranOptions in Startup.cs
+```
+    services.Configure<DetranOptions>(configurations.GetSection("DetranOptions"));
+```
+
+Add reference in Infra
+
+```
+dotnet add package Microsoft.Extensions.Http
+```
+
+Add httpClient at Startup
+
+```services.AddHttpclient();```
+
+Add a package
+
+```dotnet add package Microsoft.Extensions.Http```
+
+Add a model class to represents the data from api
+
+
+Add a package in Company.Fleet.Domain
+
+```dotnet add package Microsoft.AspNet.WebApi.Client --version 5.2.7```
+
+Inject de dependencies in Startup.cs
+
+```services.AddTransient<IVehicleDetran, VehicleDetranFacade>();```

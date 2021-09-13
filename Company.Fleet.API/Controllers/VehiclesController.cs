@@ -14,10 +14,12 @@ namespace Company.Fleet.API.Controllers
     public class RepositoryVehiclesController : ControllerBase
     {
         private readonly IVehicleRepository _vehicleRepository;
+        private readonly IVehicleDetran _vehicleDetran;
 
-        public RepositoryVehiclesController(IVehicleRepository  vehicleRepository )
+        public RepositoryVehiclesController(IVehicleRepository  vehicleRepository, IVehicleDetran vehicleDetran)
         {
             this._vehicleRepository = vehicleRepository;
+            this._vehicleDetran = vehicleDetran;
         }
         
         [HttpGet]
@@ -55,7 +57,14 @@ namespace Company.Fleet.API.Controllers
             
             _vehicleRepository.Delete(vehicle);
             
-            return NoContent();            
+            return NoContent();
+        }
+
+        [HttpPut("{id}/schedule")]
+        public IActionResult Put(Guid id){
+            _vehicleDetran.ScheduleInspection(id);
+
+            return NoContent();
         }
 
     }
